@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateVotacaoDto } from './dto/create-votacao.dto';
-import { UpdateVotacaoDto } from './dto/update-votacao.dto';
 
 @Injectable()
 export class VotacaoService {
@@ -9,6 +8,6 @@ export class VotacaoService {
   }
 
   findAll() {
-    return `This action returns all votacao`;
+    return [{ id: 1, email: 'pedro.gusmao1998@hotmail.com' }];
   }
 }

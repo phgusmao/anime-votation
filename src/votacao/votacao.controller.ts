@@ -9,7 +9,6 @@ import {
 } from '@nestjs/common';
 import { VotacaoService } from './votacao.service';
 import { CreateVotacaoDto } from './dto/create-votacao.dto';
-import { UpdateVotacaoDto } from './dto/update-votacao.dto';
 
 @Controller('votacao')
 export class VotacaoController {
