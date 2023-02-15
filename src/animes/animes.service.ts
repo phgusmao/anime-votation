@@ -11,7 +11,24 @@ export class AnimesService {
     return this.prisma.anime.findMany();
   }
 
-  rank() {
-    return 'Melhores';
+  async rank() {
+    const votacoes = await this.prisma.votacao.groupBy({
+      by: ['animeId'],
+      _count: { animeId: true },
+      orderBy: { _count: { animeId: 'desc' } },
+    });
+
+    return Promise.all(
+      votacoes.map(async (votacao) => {
+        const anime = await this.prisma.anime.findFirst({
+          where: { id: votacao.animeId },
+        });
+
+        return {
+          anime,
+          votos: votacao._count.animeId,
+        };
+      }),
+    );
   }
 }
